@@ -1,0 +1,26 @@
+package org.example.debugtransfermoney.dto;
+
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class TransferRequest {
+    @NotNull(message = "Form is required")
+    private Long from;
+
+    @NotNull(message = "To is required")
+    private Long to;
+
+    @NotNull(message = "Amount is required")
+    @DecimalMin(value = "0.01", message = "amount must larger than > 0")
+    private BigDecimal amount;
+}
