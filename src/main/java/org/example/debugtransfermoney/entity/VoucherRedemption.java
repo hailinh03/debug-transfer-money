@@ -2,8 +2,8 @@ package org.example.debugtransfermoney.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 @Table(name = "voucher_redemptions")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class VoucherRedemption {
 
     @Id
@@ -23,6 +26,7 @@ public class VoucherRedemption {
     @Column(nullable = false)
     private Long userId;
 
+    @CreationTimestamp
     @Column(nullable = false)
     private LocalDateTime redeemedAt;
 }

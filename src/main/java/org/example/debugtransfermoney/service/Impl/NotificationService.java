@@ -12,7 +12,11 @@ import java.math.BigDecimal;
 public class NotificationService implements INotificationService {
 
     @Override
-    public void sendTransferNotification(Long fromId, Long toId, BigDecimal amount) throws NotificationException {
-        log.info("Notification sent: Account {} → Account {}, amount: {}", fromId, toId, amount);
+    public void sendTransferNotification(Long fromId, Long toId, BigDecimal amount){
+      try{
+          log.info("Notification sent: Account {} → Account {}, amount: {}", fromId, toId, amount);
+      }catch(NotificationException e){
+          throw new NotificationException(e.getMessage());
+      }
     }
 }
