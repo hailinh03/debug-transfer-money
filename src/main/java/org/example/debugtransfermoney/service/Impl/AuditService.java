@@ -1,5 +1,6 @@
 package org.example.debugtransfermoney.service.Impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.debugtransfermoney.entity.AuditLog;
 import org.example.debugtransfermoney.repository.AuditRepository;
@@ -13,6 +14,8 @@ import java.math.BigDecimal;
 public class AuditService implements IAuditService {
 
     private final AuditRepository auditRepo;
+
+    @Transactional
     public void logSuccess(Long from, Long to, BigDecimal amount) {
         AuditLog log = AuditLog.builder()
                 .status("SUCCESS")
@@ -22,6 +25,7 @@ public class AuditService implements IAuditService {
                 .build();
         auditRepo.save(log);
     }
+    @Transactional
     public void logFailure(Long from, Long to, BigDecimal amount, Exception e) {
         AuditLog log = AuditLog.builder()
                 .status("FAILED")
